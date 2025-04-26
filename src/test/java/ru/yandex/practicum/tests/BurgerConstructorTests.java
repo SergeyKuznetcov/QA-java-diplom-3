@@ -15,19 +15,38 @@ public class BurgerConstructorTests {
     public static DriverRule driverRule = new DriverRule();
 
     @Test
-    @DisplayName("Check constructor selector")
-    @Description("Check ingredient type selector in burger constructor")
-    public void checkBurgerConstructorSelector() {
+    @DisplayName("Check bun selector")
+    @Description("Check bun selector in burger constructor")
+    public void checkBunSelector() {
+        Selenide.open(EnvConfig.MAIN_PAGE_URL);
+        MainPage mainPage = new MainPage();
+
+        //По умолчанию выбраны булки, поэтому нужно выбрать что то другое, чтобы кнопка стала кликабельна
+        mainPage.selectSouses();
+
+        mainPage.selectBuns();
+        mainPage.checkBunsSelector();
+    }
+
+    @Test
+    @DisplayName("Check souse selector")
+    @Description("Check souse selector in burger constructor")
+    public void checkSouseSelector() {
+        Selenide.open(EnvConfig.MAIN_PAGE_URL);
+        MainPage mainPage = new MainPage();
+
+        mainPage.selectSouses();
+        mainPage.checkSousesSelector();
+    }
+
+    @Test
+    @DisplayName("Check filling selector")
+    @Description("Check filling selector in burger constructor")
+    public void checkFillingSelector() {
         Selenide.open(EnvConfig.MAIN_PAGE_URL);
         MainPage mainPage = new MainPage();
 
         mainPage.selectFillings();
         mainPage.checkFillingSelector();
-
-        mainPage.selectBuns();
-        mainPage.checkBunsSelector();
-
-        mainPage.selectSouses();
-        mainPage.checkSousesSelector();
     }
 }
